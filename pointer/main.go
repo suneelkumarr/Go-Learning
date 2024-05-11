@@ -20,6 +20,7 @@ func main() {
 }
 
 func changeUserPointer(s *string) {
+	log.Println("The value of s is ", s)
 	newValue := "Red"
 	*s = newValue
 
