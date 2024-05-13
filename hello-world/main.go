@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"net/http"
 )
@@ -23,6 +24,29 @@ func Addvalues(x, y int) int {
 	return x + y
 }
 
+func Divide(w http.ResponseWriter, r *http.Request) {
+	f, err := dividevales(100.0, 0)
+
+	if err != nil {
+		// w.Write([]byte(err.Error()))
+		// return
+		fmt.Fprintf(w, fmt.Sprintf("Error is : %s", err.Error()))
+		return
+	}
+
+	_, _ = fmt.Fprintf(w, fmt.Sprintf(" Result is : %f", f))
+
+}
+
+func dividevales(x, y float32) (float32, error) {
+	var result float32
+	if y == 0 {
+		return result, errors.New("cannot divide by 0")
+	}
+	result = x / y
+	return result, nil
+}
+
 func main() {
 	// fmt.Println("Hello, World!")
 	// http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -38,6 +62,7 @@ func main() {
 
 	http.HandleFunc("/", HomePage)
 	http.HandleFunc("/about", AboutPage)
+	http.HandleFunc("/divide", Divide)
 	fmt.Printf("Starting server on port %s", "http://localhost"+PortNumber)
 	_ = http.ListenAndServe(PortNumber, nil)
 }
