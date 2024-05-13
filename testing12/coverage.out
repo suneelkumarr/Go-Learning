@@ -1,0 +1,7 @@
+mode: set
+testing12/main.go:8.13,10.16 2 0
+testing12/main.go:10.16,13.3 2 0
+testing12/main.go:15.2,15.46 1 0
+testing12/main.go:18.44,20.12 2 1
+testing12/main.go:20.12,22.3 1 1
+testing12/main.go:23.2,24.20 2 1
