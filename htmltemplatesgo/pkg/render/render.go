@@ -3,10 +3,18 @@ package render
 import (
 	"bytes"
 	"html/template"
+	"htmltemplatesgo/pkg/config"
 	"log"
 	"net/http"
 	"path/filepath"
 )
+
+var app *config.AppConfig
+
+// New templates sets the config for the template package
+func NewTemplates(a *config.AppConfig) {
+	app = a
+}
 
 // render html templates
 func RenderTemplate(w http.ResponseWriter, tmpl string) {
